@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { UserProfile } from './user.profile';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UserProfile],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -10,3 +11,4 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   protected readonly title = signal('ng-essentials');
 }
+
