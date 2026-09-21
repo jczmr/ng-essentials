@@ -1,12 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { UserProfile } from './user/user-profile';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [UserProfile],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  template: '<user-profile />',
 })
-export class App {
-  protected readonly title = signal('ng-essentials');
-}
+export class App {}
