@@ -1,26 +1,21 @@
-import { Component, signal } from "@angular/core";
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'user-profile',
   template: `
-  <h1 (mouseover)="updateUserName()" (mouseleave)="restoreUserName()">Profile for {{ userName() }} </h1>
-  `,
-  styles: `
-    h1 {
-        font-style: italic;
-        color: red;
-    }
+    <button [disabled]="!isValidUserId()">Save changes</button>
+
+    <ul [attr.role]="listRole()">
+      <li>developer</li>
+      <li>admin</li>
+      <li>user</li>
+    </ul>
   `,
 })
 export class UserProfile {
-  userName = signal('pro_programmer_123');
+  isValidUserId = signal(true);
 
-  updateUserName() {
-    this.userName.set('cool_coder_789');
-  }
-
-  restoreUserName() {
-    this.userName.set('pro_programmer_123');
+listRole() {
+    return this.isValidUserId() ? 'list' : 'none';
   }
 }
-
