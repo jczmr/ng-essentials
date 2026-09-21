@@ -1,21 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'user-profile',
-  template: `
-    <button [disabled]="!isValidUserId()">Save changes</button>
+    selector: 'user-profile',
+    // Add an 'click' event handler that calls the `cancelSubscription` method.
+    template: `
+    <p>Handling user interaction</p>
+    <button (click)="cancelSubscription()">Cancel subscription</button>
 
-    <ul [attr.role]="listRole()">
-      <li>developer</li>
-      <li>admin</li>
-      <li>user</li>
-    </ul>
+    <p>Example passing event handler</p>
+    <button (click)="cancelSubscription2($event)">Cancel subscription</button>
+
+
   `,
 })
 export class UserProfile {
-  isValidUserId = signal(true);
+    cancelSubscription() {
+        /* Your event handling code goes here. */
+        alert('Attempt to cancel subscription.');
+    }
 
-listRole() {
-    return this.isValidUserId() ? 'list' : 'none';
+
+    cancelSubscription2(event: Event) {
+    /* Your event handling code goes here. */
+    alert(event.type)
   }
 }
