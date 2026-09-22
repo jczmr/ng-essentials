@@ -1,16 +1,30 @@
 <form (submit)="onSubmit($event)">
   <label>
+    Name:
+    <input type="name" [formField]="loginForm.name" />
+  </label>
+  
+  <label>
     Email:
     <input type="email" [formField]="loginForm.email" />
   </label>
 
   <label>
-    Password:
-    <input type="password" [formField]="loginForm.password" />
+    Date:
+    <input type="date" [formField]="loginForm.eventDate" />
+  </label>
+  
+  <label>
+    Time:
+    <input type="time" [formField]="loginForm.eventTime" />
   </label>
 
-  <p>Hello {{ loginForm.email().value() }}!</p>
-  <p>Password length: {{ loginForm.password().value().length }}</p>
 
-  <button type="submit">Log In</button>
+  <p>Hello: {{ loginForm.name().value() }}</p>
+  <p>Mail: {{ loginForm.email().value() }}</p>
+  <p>Age: {{ loginForm.age().value() }}</p>
+  <p>Date: {{ loginForm.eventDate().value() }}</p>
+  <p>time: {{ loginForm.eventTime().value() }}</p>
+
+  <button type="submit">Send</button>
 </form>
