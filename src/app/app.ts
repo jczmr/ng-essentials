@@ -1,12 +1,32 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, signal} from '@angular/core';
+import {form, FormField} from '@angular/forms/signals';
+
+interface LoginData {
+  email: string;
+  password: string;
+}
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  templateUrl: 'app.html',
+  styleUrl: 'app.css',
+  imports: [FormField],
 })
 export class App {
-  protected readonly title = signal('ng-essentials');
+  loginModel = signal<LoginData>({
+    email: '',
+    password: '',
+  });
+
+  loginForm = form(this.loginModel);
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+
+    // Perform login logic here
+    const credentials = this.loginModel();
+    console.log('Logging in with:', credentials);
+
+    // e.g., await this.authService.login(credentials);
+  }
 }
