@@ -2,26 +2,43 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'user-profile',
-    // Add an 'click' event handler that calls the `cancelSubscription` method.
+    // Control flow with @if and @for
+    // You can repeat part of a template multiple times with Angular's @for block:
+
     template: `
-    <p>Handling user interaction</p>
-    <button (click)="cancelSubscription()">Cancel subscription</button>
+    <h1>User profile</h1>
 
-    <p>Example passing event handler</p>
-    <button (click)="cancelSubscription2($event)">Cancel subscription</button>
+    @if (isAdmin()) {
+      <h2>Admin settings</h2>
+      <!-- ... -->
+    } @else {
+      <h2>User settings</h2>
+      <!-- ... -->
+    }
 
-
+    <ul class="user-badge-list">
+      @for (badge of badges(); track badge.id) {
+        <li class="user-badge">{{ badge.name }}</li>
+      }
+    </ul>
+    
   `,
 })
 export class UserProfile {
-    cancelSubscription() {
-        /* Your event handling code goes here. */
-        alert('Attempt to cancel subscription.');
-    }
 
 
-    cancelSubscription2(event: Event) {
-    /* Your event handling code goes here. */
-    alert(event.type)
+  isAdmin() {
+    return true;
   }
+
+  badges() {
+    let badgesList = [
+      {id: 1, name: "one"},
+      {id: 2, name: "two"},
+      {id: 3, name: "three"},
+    ];
+
+    return badgesList;
+  }
+
 }
